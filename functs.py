@@ -31,7 +31,6 @@ def draw_cotangent(angle, radius, col, backcolor):
     lt(90)
     color(col)
     fd(cotangent)
-    print(quadrant)
     if quadrant == 1 or quadrant == 2:
         seth(270)
     else:
@@ -120,6 +119,22 @@ def line_return(x, y, col):
     color(col)
     goto(x, y)
     tpto(ox, oy)
+
+def dash_line_return(x, y, col, dashes):
+    ox = xcor()
+    oy = ycor()
+    color(col)
+    for i in range(dashes):
+        swap_pen()
+        goto((x/dashes-i),(y/dashes-i))
+    pu()
+    tpto(ox, oy)
+
+def swap_pen():
+    if isdown():
+        pu()
+    else:
+        pd()
 
 def draw_quadrants(radius, col):
     x = xcor()
