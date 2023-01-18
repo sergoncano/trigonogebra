@@ -80,11 +80,17 @@ def down():
     with open('a.txt', 'r') as f:
         triangle(int(f.read()))
 
-
+def num_input():
+    i = numinput('New angle', '')
+    open('a.txt', 'w').write(str(int(i)))
+    triangle(i)
+    Screen().listen()
+    
 Screen().onkeypress(up, 'Up')
 Screen().onkeypress(down, 'Down')
 Screen().onkeypress(up, 'w')
 Screen().onkeypress(down, 's')
+Screen().onkeypress(num_input, 'a')
 
 with open('a.txt', 'w') as f:
         f.write(str(0))
