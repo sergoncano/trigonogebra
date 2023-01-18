@@ -85,13 +85,16 @@ def num_input():
     open('a.txt', 'w').write(str(int(i)))
     triangle(i)
     Screen().listen()
-    
+
+def woosh():
+    bye()
+
 Screen().onkeypress(up, 'Up')
 Screen().onkeypress(down, 'Down')
 Screen().onkeypress(up, 'w')
 Screen().onkeypress(down, 's')
 Screen().onkeypress(num_input, 'a')
-
+Screen().onkeypress(woosh, 'p')
 with open('a.txt', 'w') as f:
         f.write(str(0))
 with open('a.txt', 'r') as f:
