@@ -32,6 +32,15 @@ def triangle(a):
     mid_circle(r)
     draw_quadrants(r, grey)
 
+    ta = a%360
+    if (ta == 0) or (ta == 90) or (ta == 180) or (ta == 270):
+        if ta == 0 or ta == 180:
+            line_return(cosinus, 0, cos_col)
+            return
+        elif ta == 90 or ta == 270:
+            line_return(0, sinus, sin_col)
+            return
+
 
     line_return(cosinus, 0, cos_col) #cosinus
     line_return(0, sinus, sin_col) #sinus
@@ -55,10 +64,33 @@ def triangle(a):
     update()
 
 
-while True:
-    inp = textinput('Valor del ángulo', '(O introduce cualquier otra cosa para cerrar esta ventana)')
-    try:
-        triangle(float(inp))
-    except:
-        bye()
-done()
+def up():
+    with open('a.txt', 'r') as f:
+        val = f.read()
+    with open('a.txt', 'w') as f:
+        f.write(str(int(val) + 1))
+    with open('a.txt', 'r') as f:
+        triangle(int(f.read()))
+
+def down():
+    with open('a.txt', 'r') as f:
+        val = f.read()
+    with open('a.txt', 'w') as f:
+        f.write(str(int(val) - 1))
+    with open('a.txt', 'r') as f:
+        triangle(int(f.read()))
+
+
+Screen().onkeypress(up, 'Up')
+Screen().onkeypress(down, 'Down')
+Screen().onkeypress(up, 'w')
+Screen().onkeypress(down, 's')
+
+with open('a.txt', 'w') as f:
+        f.write(str(0))
+with open('a.txt', 'r') as f:
+        triangle(int(f.read()))
+        
+
+Screen().listen()
+mainloop()
